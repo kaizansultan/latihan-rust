@@ -1,0 +1,117 @@
+**Tipe Data String di Rust**
+
+Tipe data `String` di Rust dapat diklasifikasikan menjadi dua jenis:
+
+- String Literal (`&str`)
+- String Object (`String`)
+
+### String Literal
+
+String literal (`&str`) digunakan ketika nilai sebuah string sudah diketahui saat compile time. String literal adalah kumpulan karakter yang sudah ditetapkan dalam variabel. Sebagai contoh, `let company="Tutorials Point"`. String literal ditemukan di modul `std::str` dan juga dikenal sebagai string slices.
+
+Contoh berikut mendeklarasikan dua string literal — `company` dan `location`.
+
+```rust
+fn main() {
+   let company:&str="TutorialsPoint";
+   let location:&str = "Hyderabad";
+   println!("company is : {} location :{}",company,location);
+}
+```
+
+Secara default, string literal bersifat `static`. Ini berarti bahwa string literal dijamin valid sepanjang program berjalan. Kita juga bisa secara eksplisit menentukan variabel sebagai `static` seperti ditunjukkan di bawah ini:
+
+```rust
+fn main() {
+   let company:&'static str = "TutorialsPoint";
+   let location:&'static str = "Hyderabad";
+   println!("company is : {} location :{}",company,location);
+}
+```
+
+Output:
+
+```
+company is : TutorialsPoint location : Hyderabad
+```
+
+### String Object
+
+Tipe objek `String` disediakan di dalam _Standard Library_. Berbeda dengan string literal, tipe objek `String` bukan bagian dari bahasa inti Rust. Ia didefinisikan sebagai struktur publik dalam pustaka standar (`pub struct String`). String adalah koleksi yang dapat tumbuh, bersifat mutable, dan dikodekan dalam UTF-8. Objek `String` digunakan untuk merepresentasikan nilai string yang disediakan saat runtime. String objek dialokasikan di heap.
+
+#### Sintaks
+
+Untuk membuat objek `String`, kita bisa menggunakan salah satu sintaks berikut:
+
+- `String::new()`: Membuat string kosong.
+- `String::from()`: Membuat string dengan nilai default yang diberikan sebagai parameter ke metode `from()`.
+
+Contoh berikut mengilustrasikan penggunaan objek `String`:
+
+```rust
+fn main(){
+   let empty_string = String::new();
+   println!("length is {}",empty_string.len());
+
+   let content_string = String::from("TutorialsPoint");
+   println!("length is {}",content_string.len());
+}
+```
+
+Output:
+
+```
+length is 0
+length is 14
+```
+
+### Metode Umum - Objek String
+
+Berikut adalah beberapa metode umum untuk objek `String`:
+
+1. `new()`: Membuat `String` kosong.
+2. `to_string()`: Mengonversi nilai yang diberikan menjadi objek `String`.
+3. `replace()`: Mengganti semua kecocokan pola dengan string lain.
+4. `as_str()`: Mengambil _string slice_ yang berisi seluruh string.
+5. `push()`: Menambahkan karakter ke akhir `String`.
+6. `push_str()`: Menambahkan _string slice_ ke akhir `String`.
+7. `len()`: Mengembalikan panjang `String` dalam byte.
+8. `trim()`: Menghapus _whitespace_ di awal dan akhir string.
+9. `split_whitespace()`: Membagi _string slice_ berdasarkan spasi dan mengembalikan iterator.
+10. `split()`: Mengembalikan iterator yang memisahkan string berdasarkan pola tertentu.
+11. `chars()`: Mengembalikan iterator yang memisahkan karakter dalam string.
+
+### Ilustrasi: `new()`
+
+Sebuah objek string kosong dibuat menggunakan metode `new()` dan nilainya diatur menjadi "hello".
+
+```rust
+fn main(){
+   let mut z = String::new();
+   z.push_str("hello");
+   println!("{}",z);
+}
+```
+
+Output:
+
+```
+hello
+```
+
+### Ilustrasi: `to_string()`
+
+Untuk mengakses semua metode objek `String`, konversi string literal ke tipe objek menggunakan fungsi `to_string()`.
+
+```rust
+fn main(){
+   let name1 = "Hello TutorialsPoint, Hello!".to_string();
+   println!("{}",name1);
+}
+```
+
+Output:
+
+```
+Hello TutorialsPoint, Hello!
+```
