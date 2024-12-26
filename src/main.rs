@@ -2,7 +2,10 @@ mod basic;
 
 fn main() {
     perkenalan("Kaizan", 22);
+
     basic::vector::print();
+    basic::string::print_string();
+    basic::ownership::print();
 }
 
 fn perkenalan(nama: &str, umur: u8) {
